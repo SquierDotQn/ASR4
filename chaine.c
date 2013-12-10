@@ -85,7 +85,7 @@ char *mon_strstr(const char *haystack, const char *needle){
 	int i=0, j=0, k=0;
 	if(n_size==0){
 		return NULL;
-	}
+	}/*
 	while(i+n_size < h_size){
 		if(*(haystack+i) == *(needle)){
 			k = 0;
@@ -101,6 +101,11 @@ char *mon_strstr(const char *haystack, const char *needle){
 			}
 		}	
 		i++;
+	}*/
+	while(i<h_size-n_size){
+		haystack=haystack+i;
+		if(mon_strncmp(haystack, needle, n_size)==0)
+			return (char*)haystack+i;
 	}
 	return NULL;
 }
