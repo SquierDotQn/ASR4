@@ -81,31 +81,15 @@ char *mon_strchr(const char *s, int c){
 }
 
 char *mon_strstr(const char *haystack, const char *needle){
-	int h_size = mon_strlen(haystack), n_size = mon_strlen(needle);
-	int i=0, j=0, k=0;
-	if(n_size==0){
-		return NULL;
-	}/*
-	while(i+n_size < h_size){
-		if(*(haystack+i) == *(needle)){
-			k = 0;
-			j = 0;
-			for(k = i; k<n_size+i;k++){
-				if(*(haystack+k) != *(needle+j) && *(needle+j) != '\0'&& *(i+haystack) != '\0'){
-					break;
-				}
-				j++;
-			}
-			if(*(needle+j) == '\0'){
-				return (char*)(haystack+i);
-			}
-		}	
-		i++;
-	}*/
-	while(i<h_size-n_size){
-		haystack=haystack+i;
-		if(mon_strncmp(haystack, needle, n_size)==0)
-			return (char*)haystack+i;
-	}
-	return NULL;
+        int h_size = mon_strlen(haystack), n_size = mon_strlen(needle);
+        int i=0;
+        if(n_size==0){
+                return (char*)haystack;
+        }
+        while(i<h_size-n_size){
+                i++;
+                if(mon_strncmp(haystack+i, needle, n_size)==0)
+                        return (char*)haystack+i;
+        }
+        return NULL;
 }
